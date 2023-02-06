@@ -1,0 +1,19 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    awesome_print (1.9.2)
+    ffi (1.15.5)
+    rake (13.0.6)
+    sys-proctable (1.3.0)
+      ffi (~> 1.1)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  awesome_print
+  rake
+  sys-proctable
+
+BUNDLED WITH
+   2.1.4
