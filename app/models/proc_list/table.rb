@@ -2,6 +2,7 @@ require_relative '../../../lib/beholder/producer.rb'
 
 module ProcList
   class Table
+
     include Beholder::Producer
     
     attr_reader :processes
