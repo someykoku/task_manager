@@ -1,8 +1,8 @@
-puts require_relative '../app/models/proc_list/process.rb'
-puts require_relative '../app/models/proc_list/table.rb'
-puts require_relative '../app/views/table_view.rb'
-puts require_relative '../lib/beholder/observer.rb'
-puts require_relative '../lib/beholder/producer.rb'
+require_relative '../app/models/proc_list/process.rb'
+require_relative '../app/models/proc_list/table.rb'
+require_relative '../app/views/table_view.rb'
+require_relative '../lib/beholder/observer.rb'
+require_relative '../lib/beholder/producer.rb'
 
 
 puts ProcList::Process.list 
