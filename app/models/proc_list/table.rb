@@ -1,10 +1,11 @@
-require_relative '../../../lib/beholder/producer.rb'
+# frozen_string_literal: true
+
+require_relative '../../../lib/beholder/producer'
 
 module ProcList
   class Table
-
     include Beholder::Producer
-    
+
     attr_reader :processes
 
     def initialize
@@ -15,10 +16,8 @@ module ProcList
       new_processes = Process.list
       new_process_pids = new_processes.map(&:pid)
       existing_process_pids = @processes.map(&:pid)
-      
       terminated_process_pids = existing_process_pids - new_process_pids
       @processes.reject! { |p| terminated_process_pids.include?(p.pid) }
-      
       new_processes.each do |process|
         index = @processes.find_index { |p| p.pid == process.pid }
         if index
