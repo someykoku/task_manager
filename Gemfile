@@ -7,6 +7,7 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 # gem "rails"
 
 gem 'awesome_print'
-gem 'sys-proctable'
-gem 'rake'
 gem 'pry'
+gem 'rubocop', require: false
+gem 'rake'
+gem 'sys-proctable'

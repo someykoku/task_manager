@@ -5,9 +5,6 @@ require_relative '../lib/beholder/observer.rb'
 require_relative '../lib/beholder/producer.rb'
 
 
-puts ProcList::Process.list 
-
-
 table = ProcList::Table.new
 table_view = TableView.new(table)
 
