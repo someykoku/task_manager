@@ -13,9 +13,10 @@ table_view = TableView.new(table)
 
 Thread.new do
   thread = Application::Input.listen do |type, event|
-    if type == :key
+    case type
+    when :key
       puts "Key pressed: #{event.inspect}"
-    elsif type == :mouse
+    when :mouse
       puts "Mouse event: #{event.inspect}"
     end
   end
@@ -28,4 +29,3 @@ Thread.new do
     `clear`
   end
 end.join
-

@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'io/console'
 
 module Application
   module Input
     def self.listen(&block)
-      thread = Thread.new do
+      Thread.new do
         loop do
           # Check if a key was pressed.
           if IO.select([$stdin], [], [], 0)
@@ -18,12 +20,12 @@ module Application
             # Read the mouse click from standard output.
             click = $stdin.read_nonblock(6)
             # Parse the mouse click data.
-            type = click.unpack('c')[0]
-            button = click.unpack('x3c')[0]
-            x = click.unpack('x4s<')[0]
-            y = click.unpack('x6s<')[0]
+            type = click.unpack1('c')
+            button = click.unpack1('x3c')
+            x = click.unpack1('x4s<')
+            y = click.unpack1('x6s<')
             # Pass the mouse click to the block.
-            block.call(:mouse, {type: type, button: button, x: x, y: y})
+            block.call(:mouse, { type: type, button: button, x: x, y: y })
           end
 
           # Sleep briefly to avoid consuming too much CPU time.
@@ -32,7 +34,6 @@ module Application
       end
 
       # Return the created thread.
-      thread
     end
   end
 end
