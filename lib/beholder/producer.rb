@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 module Beholder
   module Producer
-    
     def add_observer(observer)
       observers << observer
     end

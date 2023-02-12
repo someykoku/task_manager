@@ -1,5 +1,6 @@
-require_relative '../../lib/beholder/observer.rb'
+# frozen_string_literal: true
 
+require_relative '../../lib/beholder/observer'
 
 class TableView
   include Beholder::Observer
@@ -8,7 +9,7 @@ class TableView
     subscribe_to(@table)
   end
 
-  def update(*args)
+  def update(*_args)
     @table.processes.each do |process|
       puts "process id: #{process.pid} process name: #{process.pname}"
     end

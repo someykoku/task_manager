@@ -1,26 +1,10 @@
-inherit_from: .rubocop_todo.yml
-
-name: RuboCop
-
-on: push
-
-jobs:
-  rubocop:
-    name: RuboCop
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up Ruby 2.7
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7.x
-
-      - name: Install dependencies
-        run: bundle install
-
-      - name: Run RuboCop
-        run: bundle exec rubocop
-
-
+Style/Documentation:
+  Enabled: false
+Metrics/LineLength:
+  Max: 200
+Metrics/MethodLength:
+  Max: 20
+Metrics/AbcSize:
+  Max: 20
+Lint/UselessAssignment:
+  Enabled: false
