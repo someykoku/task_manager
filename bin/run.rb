@@ -5,42 +5,33 @@ require_relative '../app/models/proc_list/table'
 require_relative '../app/views/table_view'
 require_relative '../lib/beholder/observer'
 require_relative '../lib/beholder/producer'
+require_relative '../lib/application/input'
+require_relative '../lib/application/base_controller'
+require_relative '../app/controllers/process_table_controller'
+
+
 require 'io/console'
 
 include Application::Input
 
+
 def run
   table = ProcList::Table.new
+  controller = ProcessTableController.new(table)
   table_view = TableView.new(table)
 
-  raw_mode
-
-  stop_requested = false
-  trap('SIGINT') { stop_requested = true }
+  # raw_mode
 
   begin
     loop do
-      if stop_requested
-        puts "\r\nExiting program\r\n"
-        break
-        exit
-      end
-
-      if input = read_input
-        if input == 'q'
-          print "\r\nExiting program\r\n"
-          break
-        end    
-      end
-
+      # controller.key_pressed(read_input)
       table.refresh!
       `clear`
       sleep 1
     end
-
   ensure
+    # skip_raw_mode
     exit
-    skip_raw_mode
   end
 end
 

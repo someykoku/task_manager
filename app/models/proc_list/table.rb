@@ -2,7 +2,6 @@
 
 require 'io/console'
 require_relative '../../../lib/beholder/producer'
-require_relative '../../../lib/application/input'
 
 module ProcList
   class Table
