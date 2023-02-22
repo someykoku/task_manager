@@ -11,7 +11,7 @@ class TableView
 
   def update(*_args)
     @table.processes.each do |process|
-      puts "process id: #{process.pid} process name: #{process.pname}"
+      print "\r\n process id: #{process.pid} process name: #{process.pname}\r\n"
     end
   end
 end

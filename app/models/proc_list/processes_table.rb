@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
+require 'io/console'
 require_relative '../../../lib/beholder/producer'
 
 module ProcList
-  class Table
+  class ProcessTable
     include Beholder::Producer
 
     attr_reader :processes
