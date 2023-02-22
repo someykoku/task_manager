@@ -7,25 +7,41 @@ require_relative '../lib/beholder/observer'
 require_relative '../lib/beholder/producer'
 require 'io/console'
 
-table = ProcList::Table.new
+include Application::Input
 
-table_view = TableView.new(table)
+def run
+  table = ProcList::Table.new
+  table_view = TableView.new(table)
 
-Thread.new do
-  thread = Application::Input.listen do |type, event|
-    case type
-    when :key
-      puts "Key pressed: #{event.inspect}"
-    when :mouse
-      puts "Mouse event: #{event.inspect}"
+  raw_mode
+
+  stop_requested = false
+  trap('SIGINT') { stop_requested = true }
+
+  begin
+    loop do
+      if stop_requested
+        puts "\r\nExiting program\r\n"
+        break
+        exit
+      end
+
+      if input = read_input
+        if input == 'q'
+          print "\r\nExiting program\r\n"
+          break
+        end    
+      end
+
+      table.refresh!
+      `clear`
+      sleep 1
     end
-  end
 
-  thread.daemon = true
-
-  loop do
-    table.refresh!
-    sleep 1
-    `clear`
+  ensure
+    exit
+    skip_raw_mode
   end
-end.join
+end
+
+run

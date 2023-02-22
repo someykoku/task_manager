@@ -7,7 +7,6 @@ require_relative '../../../lib/application/input'
 module ProcList
   class Table
     include Beholder::Producer
-    include Application::Input
 
     attr_reader :processes
 
