@@ -5,8 +5,9 @@ module Application
       @model = model
     end
 
-    def key_press(key)
+    def key_pressed(key)
       public_send "#{key}_pressed"
+    rescue NoMethodError
     end
   end
 end

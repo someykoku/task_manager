@@ -5,7 +5,7 @@ require 'io/console'
 module Application
   module Input
 
-    def raw_mode 
+    def self.raw_mode 
       system('stty raw -echo')
     end
     
@@ -15,7 +15,7 @@ module Application
     #   nil
     # end
 
-    def read_input
+    def self.read_input
       input = STDIN.read_nonblock(1)
       input == "\e" ? STDIN.read_nonblock(2, exception: false) : input
     rescue IO::WaitReadable
@@ -23,7 +23,7 @@ module Application
     end
     
 
-    def skip_raw_mode 
+    def self.skip_raw_mode 
       system('stty -raw echo')
     end
 
