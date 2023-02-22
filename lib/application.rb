@@ -1,5 +1,6 @@
-module Application
+# frozen_string_literal: true
 
+module Application
   def self.run
     Input.raw_mode
     loop do
@@ -9,7 +10,7 @@ module Application
       `clear`
     end
   rescue StandardError => e
-    p e
+    puts e
   ensure
     Input.skip_raw_mode
     exit
@@ -23,7 +24,7 @@ module Application
 
   def self.current_controller
     @current_controller ||= controllers[:process_table_controller]
-  end  
+  end
 
   def self.process_table
     unless @process_table

@@ -10,7 +10,6 @@ require_relative '../lib/application'
 require_relative '../lib/application/base_controller'
 require_relative '../app/controllers/process_table_controller'
 
-
 require 'io/console'
 
 Application.run
