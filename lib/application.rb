@@ -6,7 +6,7 @@ module Application
     loop do
       current_controller.key_pressed(Input.read_input)
       process_table.refresh!
-      sleep 0.1
+      sleep 0.01
       `clear`
     end
   rescue StandardError => e

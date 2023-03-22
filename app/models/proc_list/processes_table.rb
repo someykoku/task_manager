@@ -27,8 +27,43 @@ module ProcList
       @processes += new_processes_list
 
       @processes.sort_by!(&:pid)
+      auto_select_process
       notify_observers
       true
+    end
+
+    def selected_process_index
+      @processes.index(&:selected)
+    end
+
+    def select_process(index)
+      @processes.each { |p| p.selected = false }
+      @processes[index].selected = true
+    end
+
+    def auto_select_process
+      @processes.each { |p| p.selected = false }
+      @processes[0].selected = true
+    end
+
+    def select_next_process
+      index = selected_process_index
+      @processes[index].selected = false
+      @processes[index + 1].selected = true
+      notify_observers
+    end
+
+    def select_previous_process
+      index = selected_process_index
+      @processes[index].selected = false
+      @processes[index - 1].selected = true
+      notify_observers
+    end
+
+    def kill_selected_process
+      index = selected_process_index
+      pid = @processes[index].pid
+      `kill -9 #{pid}`
     end
   end
 end

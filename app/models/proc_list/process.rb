@@ -10,10 +10,10 @@ module ProcList
   # create class to hold the process information
   class Process
     include Beholder::Observer
-
-    attr_accessor :pid, :pname
+    attr_accessor :pid, :pname, :selected
 
     def initialize(pid, pname)
+      @selected = false
       @pid = pid
       @pname = pname
     end
