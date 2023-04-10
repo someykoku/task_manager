@@ -2,17 +2,18 @@
 
 module Application
   def self.run
-    Input.raw_mode
+    Input.init
     loop do
+      ApplicationLogger.info('Getting input')
       current_controller.key_pressed(Input.read_input)
+      ApplicationLogger.info('Refreshing process table')
       process_table.refresh!
-      sleep 0.01
-      `clear`
+      ApplicationLogger.info("Step Done! Current controller: #{current_controller.class.name}")
+      sleep 0.1
     end
   rescue StandardError => e
     puts e
   ensure
-    Input.skip_raw_mode
     exit
   end
 

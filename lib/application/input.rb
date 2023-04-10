@@ -4,25 +4,14 @@ require 'io/console'
 
 module Application
   module Input
-    def self.raw_mode
-      system('stty raw -echo')
+    def self.init
+      Curses.stdscr.keypad(true) # enable special key support
+      Curses.stdscr.nodelay = true # asynchronous mode
+      Curses.stdscr.timeout = 0
     end
-
-    # def read_input
-    #   STDIN.read_nonblock(1).ord
-    # rescue StandardError
-    #   nil
-    # end
 
     def self.read_input
-      input = $stdin.read_nonblock(1)
-      input == "\e" ? $stdin.read_nonblock(2, exception: false) : input
-    rescue IO::WaitReadable
-      nil
-    end
-
-    def self.skip_raw_mode
-      system('stty -raw echo')
+      Application::Window.window.getch
     end
   end
 end

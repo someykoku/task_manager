@@ -9,8 +9,8 @@ end
 # gem "rails"
 
 gem 'awesome_print'
+gem 'curses'
 gem 'pry'
 gem 'rake'
-gem 'rubocop',
-    require: false
+gem 'rubocop', require: false
 gem 'sys-proctable'

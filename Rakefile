@@ -7,3 +7,9 @@ task :run do
 rescue StandardError => e
   puts "Error: #{e}"
 end
+
+task :console do
+  ruby 'bin/console.rb'
+rescue StandardError => e
+  puts "Error: #{e}"
+end
